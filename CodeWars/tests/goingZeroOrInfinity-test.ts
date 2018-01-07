@@ -19,14 +19,21 @@ function expectSumToBe(n:string,m:string,result:string){
     assert.equal(solution.G964.add(n,m),result);
 }
 describe("Fixed Tests going", function() {
+
+    it("should return the arrays last entry as number", () =>{
+        assert.equal(solution.G964.getLastEntryOrZero(["1","2"]),2);
+        assert.equal(solution.G964.getLastEntryOrZero(["1"]),1);
+        assert.equal(solution.G964.getLastEntryOrZero([]),0);
+        assert.equal(solution.G964.getLastEntryOrZero(["1"]),1);
+    })
     
-    xit('should correctly calculate the faculty', () => {
+    it('should correctly calculate the faculty', () => {
       assert.equal(solution.G964.calculateFaculty(1),1)
       assert.equal(solution.G964.calculateFaculty(2),2)
       assert.equal(solution.G964.calculateFaculty(3),6)
     })
 
-    xit('should correctly calculate the faculty of big numbers', () => {
+    it('should correctly calculate the faculty of big numbers', () => {
         expectFacultyToBe(190,9.332622e+157);
     })
 
@@ -37,6 +44,8 @@ describe("Fixed Tests going", function() {
     })
 
     it("should multiply a number represented as array with a factor", () => {
+        assert.equal(solution.G964.multiplySingleLine(["1","2"], 1), "12");
+        assert.equal(solution.G964.multiplySingleLine(["1","2"], 10), "120");
         assert.equal(solution.G964.multiplySingleLine(["1","2"], 2), "24");
         assert.equal(solution.G964.multiplySingleLine(["1","8"], 2), "36");
         assert.equal(solution.G964.multiplySingleLine(["6","8"], 2), "136");
@@ -47,12 +56,6 @@ describe("Fixed Tests going", function() {
         expectSumToBe("12","30","42");
         expectSumToBe("18","18","36");
         expectSumToBe("99","99","198");
-    })
-
-    it("should return the arrays last entry as number", () =>{
-        assert.equal(solution.G964.getLastEntryOrZero(["1","2"]),2);
-        assert.equal(solution.G964.getLastEntryOrZero(["1"]),1);
-        assert.equal(solution.G964.getLastEntryOrZero([]),0);
     })
     
     xit("Basic tests", function() {

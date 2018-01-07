@@ -17,12 +17,13 @@ export class G964 {
         return this.addFaculties(n-1) + this.calculateFaculty(n);
     }
 
-    public static calculateFaculty(n:number) : number {
+    public static calculateFaculty(n:number) : string {
         if(n == 0) {
-            return 1
+            return "1";
         }
         else
-            return n * this.calculateFaculty(n-1);
+            return this.multiply(n.toString(), (this.calculateFaculty(n-1)));
+            //return n * this.calculateFaculty(n-1);
     }
     public static multiply(a : string, b : string) : string {
         var longerNumber = a.length >= b.length ? a.split("") : b.split("");
@@ -35,16 +36,17 @@ export class G964 {
             currentFaktor = this.getLastEntryOrZero(shorterNumber) * decimals;
             intermediaryProducts.push(this.multiplySingleLine(longerNumber,currentFaktor))
             decimals = decimals * 10;
-        }
-        result = intermediaryProducts.reduce(function (
-            accumulator,
-            currentValue,
-            currentIndex,
-            array
-          ) {
-            return this.add(accumulator + currentValue);
-          });
+        }        
+        var parent = this;
+        result = G964.sumIntermediaryProducts(intermediaryProducts, parent);
+        
         return result;
+    }
+
+    public static sumIntermediaryProducts(intermediaryProducts: any[], parent: typeof G964) {
+        return intermediaryProducts.reduce(function (accumulator, currentValue, currentIndex, array) {
+            return parent.add(accumulator, currentValue);
+        });
     }
 
     public static multiplySingleLine(numberAsArray, currentFaktor) : string {
@@ -52,12 +54,12 @@ export class G964 {
         var overhead = 0;
         var rest;
         var result = [];
-        while(numberAsArray.length > 0){
-            product = (this.getLastEntryOrZero(numberAsArray) * currentFaktor) + overhead;
+        for(var i = numberAsArray.length-1; i>=0; i--){
+            product = (numberAsArray[i] * currentFaktor) + overhead;
             rest = product % 10;
             overhead = Math.floor(product / 10);
             result.push(rest);
-        }
+        }        
         if(overhead > 0){
             result.push(overhead.toString());
         }
