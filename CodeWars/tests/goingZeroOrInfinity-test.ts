@@ -18,6 +18,7 @@ function expectProductToBe(n : string, k: string, result: string){
 function expectSumToBe(n:string,m:string,result:string){
     assert.equal(solution.G964.add(n,m),result);
 }
+<<<<<<< HEAD
 describe("Fixed Tests going", function() {
 
     it("should return the arrays last entry as number", () =>{
@@ -26,6 +27,9 @@ describe("Fixed Tests going", function() {
         assert.equal(solution.G964.getLastEntryOrZero([]),0);
         assert.equal(solution.G964.getLastEntryOrZero(["1"]),1);
     })
+=======
+xdescribe("Fixed Tests going", function() {
+>>>>>>> 729eb2d792f64fc0d9d9e38b90312ff6e2ebc6ee
     
     it('should correctly calculate the faculty', () => {
       assert.equal(solution.G964.calculateFaculty(1),1)
