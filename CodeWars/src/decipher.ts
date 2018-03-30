@@ -1,26 +1,38 @@
 export function decipherThis(str: string): string {
     // have fun!  
     const words = str.split(" ");
-    const result:string[] = new Array(words.length);
+    const result:string[] = new Array();
+    
     words.forEach(word =>{
-        let chars = word.split("");
-        let lastChar = chars.pop();
-        let firstChar:string = chars.shift();
-        let code: string | undefined;
-        code = getCharCodeForFirstLetter(firstChar, chars);
-        const decodedFirstChar = String.fromCharCode(+code);
-        result.push(decodedFirstChar + lastChar + chars.join('') + firstChar);
+        result.push(
+            String.fromCharCode(+getLeadingNumbers(word))+
+            switchFirstAndLastLetter(getLetters(word))
+        );        
     });
     return result.join(' ');
   }
-  
 
-export function getCharCodeForFirstLetter(firstChar: string, chars: string[]) {
-    let code: string = '';
-    while (!isNaN(Number(firstChar))) {
-        code += firstChar;
-        firstChar = chars.shift();
-    }
-    return code;
+export function getLeadingNumbers(stringWithLeadingNumbers:string){
+    return parseInt(stringWithLeadingNumbers);    
 }
-  
+
+function getPositionOfFirstLetter(stringWithLeadingNumbers: string): number {
+    return stringWithLeadingNumbers.search(/[A-Za-z]/);
+}
+
+export function getLetters(stringWithLeadingNumbers:string){
+    const positionOfFirstLetter : number = getPositionOfFirstLetter(stringWithLeadingNumbers);
+    return positionOfFirstLetter > -1 ? 
+        stringWithLeadingNumbers.slice(positionOfFirstLetter,stringWithLeadingNumbers.length):
+        '';
+}
+
+export function switchFirstAndLastLetter(stringToTwist:string){
+    const charArray:string[] = stringToTwist.split('');
+    const firstChar = charArray.shift();
+    const lastChar = charArray.pop();
+    charArray.unshift(lastChar)
+    charArray.push(firstChar);
+    return charArray.join('');
+
+}

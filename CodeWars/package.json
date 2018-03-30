@@ -23,7 +23,7 @@
     "typings": "^2.1.1"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register tests/**/decipher-tests.ts"
+    "test": "mocha -r ts-node/register tests/**/saveMark-tests.ts"
     
   },
   "author": "",
