@@ -1,0 +1,27 @@
+{
+  "name": "config-generator",
+  "version": "1.0.0",
+  "description": "Generates a Byot Config Template",
+  "main": "index.js",
+  "author": "Arne Schramm",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "@types/lodash": "^4.14.121",
+    "@types/node": "^11.9.4",
+    "lodash": "^4.17.11",
+    "path": "^0.12.7",
+    "ts-node": "^8.0.2",
+    "typescript": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.2.3"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register test/**/*.spec.ts"
+  }
+}

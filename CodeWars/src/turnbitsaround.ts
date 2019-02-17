@@ -11,10 +11,14 @@
 // 6. Change the first against the third bit of the char.         (1 <==> 3)
 
 
-export function encrypt(text:string):string {
-
+export function encrypt(text: string): string {
+    const validCharacters: RegExp = new RegExp('^[a-zA-Z0-9]*$')
+    if (validCharacters.exec(text).length === 0) {
+        throw Error
+    }
+    return text
 }
 
-export function decrypt(encryptedText:string):string {
-
+export function decrypt(encryptedText: string): string {
+    return encryptedText
 }
